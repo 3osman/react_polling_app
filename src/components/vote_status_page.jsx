@@ -13,7 +13,7 @@ const VoteStatus = voteStatus => (
         }
 
         <Link to={`/`}>
-          <button>Go Back</button>
+          <button className='save-btn'>Back</button>
         </Link>
       </div>
     );

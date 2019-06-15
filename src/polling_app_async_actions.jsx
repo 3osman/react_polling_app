@@ -16,7 +16,7 @@ const getQuestion = id => (dispatch, getState, { api }) => {
   api.question(id)
     .catch(() => dispatch(PollingAppActions.getQuestionFail()))
     .then((response) => {
-      dispatch(PollingAppActions.getQuestionSuccess(response.data));
+      if (response.data) dispatch(PollingAppActions.getQuestionSuccess(response.data));
   });
 };
 

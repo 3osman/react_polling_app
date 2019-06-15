@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import PollingAppAsyncActions from '../polling_app_async_actions';
 import { PollingAppSelectors } from '../polling_app_selectors';
@@ -51,13 +52,23 @@ class QuestionDetail extends Component {
     return (
       <div className="main-container">
         {this.props.fetchingQuestions && <span> Loading </span>}
-        <div className="wrapper">
-          <div className="box question">{question}</div>
-          <div className="box choices">
-            {choicesList}
-            <button className="save-btn" onClick={this.handleVoteSubmit}>Vote</button>
+        {
+          question ?
+          <div className="wrapper">
+            <div className="box question">{question}</div>
+            <div className="box choices">
+              {choicesList}
+              <button className="save-btn" onClick={this.handleVoteSubmit}>Vote</button>
+            </div>
           </div>
-        </div>
+        :
+          <div className="wrapper">
+            <div className="box question">No question found</div>
+            <Link to={`/`}>
+              <button>Go Back</button>
+            </Link>
+          </div>
+        }
       </div>
     )
   }

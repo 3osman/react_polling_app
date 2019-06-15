@@ -45,7 +45,7 @@ export default (state = initialState, action) => {
     }
     case GET_QUESTION_SUCCESS: {
       const sum = action.payload.question.choices.reduce((a, b) => a + (b.votes || 0), 0);
-      action.payload.question.choices = action.payload.question.choices.map(obj=> ({ ...obj, percentage: (obj.votes/sum).toFixed(2) }));
+      action.payload.question.choices = action.payload.question.choices.map(obj=> ({ ...obj, percentage: sum === 0 ? 0 : (obj.votes/sum).toFixed(2) }));
       return state.set('question', action.payload.question);
     }
     case VOTE_SUCCESS: {

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const getPollingAppState = state => state;
+const getPollingAppState = state => state.pollingApp;
 const getQuestions = createSelector(getPollingAppState, appState => appState.questions);
 const getQuestion = createSelector(getPollingAppState, appState => appState.question);
 const getVoteSuccess = createSelector(getPollingAppState, appState => appState.voteSuccess);

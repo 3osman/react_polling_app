@@ -1,18 +1,18 @@
-import { PollingAppActions } from 'polling_app_reducer';
+import { PollingAppActions } from './polling_app_reducer';
 
-const getQuestions = page => (dispatch, { api }) => {
-  disptch(PollingAppActions.getQuestionsStart());
-  disptch(PollingAppActions.questionsLoading(true));
+const getQuestions = page => (dispatch, getState, { api }) => {
+  dispatch(PollingAppActions.getQuestionsStart());
+  dispatch(PollingAppActions.questionsLoading(true));
   api.questions(page)
     .catch(() => dispatch(PollingAppActions.getQuestionsFail()))
     .then((response) => {
-      dispatch(PollingAppActions.getQuestionSuccess(response.data));
-      disptch(PollingAppActions.questionsLoading(false));
+      dispatch(PollingAppActions.getQuestionsSuccess(response.data));
+      dispatch(PollingAppActions.questionsLoading(false));
   });
 };
 
 const getQuestion = id => (dispatch, { api }) => {
-  disptch(PollingAppActions.getQuestionStart());
+  dispatch(PollingAppActions.getQuestionStart());
   api.question(id)
     .catch(() => dispatch(PollingAppActions.getQuestionFail()))
     .then((response) => {
@@ -21,10 +21,16 @@ const getQuestion = id => (dispatch, { api }) => {
 };
 
 const vote = (id, choice) => (dispatch, { api }) => {
-  disptch(PollingAppActions.voteStart());
+  dispatch(PollingAppActions.voteStart());
   api.vote(id, choice)
     .catch(() => dispatch(PollingAppActions.voteFail()))
     .then(() => {
       dispatch(PollingAppActions.voteSuccess());
   });
+};
+
+export default {
+  getQuestion,
+  getQuestions,
+  vote
 };

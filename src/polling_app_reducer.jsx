@@ -13,11 +13,11 @@ const VOTE_FAIL = 'VOTE_FAIL';
 
 export const PollingAppActions = {
   getQuestionsStart: () => ({ type: GET_QUESTIONS_START, payload: { } }),
-  getQuestionsSuccess: () => ({ type: GET_QUESTIONS_SUCCESS, payload: { questions } }),
+  getQuestionsSuccess: questions => ({ type: GET_QUESTIONS_SUCCESS, payload: { questions } }),
   getQuestionsFail: () => ({ type: GET_QUESTIONS_FAIL, payload: { } }),
   questionsLoading: isLoading => ({ type: QUESTIONS_LOADING, payload: { isLoading } }),
   getQuestionStart: () => ({ type: GET_QUESTION_START, payload: { } }),
-  getQuestionSuccess: () => ({ type: GET_QUESTION_SUCCESS, payload: { question } }),
+  getQuestionSuccess: question => ({ type: GET_QUESTION_SUCCESS, payload: { question } }),
   getQuestionFail: () => ({ type: GET_QUESTION_FAIL, payload: { } }),
   voteStart: () => ({ type: VOTE_START, payload: { } }),
   voteSuccess: () => ({ type: VOTE_SUCCESS, payload: { } }),
@@ -33,7 +33,7 @@ const initialState = Immutable({
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_QUESTION_SUCCESS: {
+    case GET_QUESTIONS_SUCCESS: {
       return state.set('questions', action.payload.questions);
     }
     case QUESTIONS_LOADING: {

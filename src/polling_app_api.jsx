@@ -22,7 +22,7 @@ const postVote = (id, choice) => axios({
 const api = {
   questions: getQuestions,
   question: getQuestion,
-  vote: vote,
+  vote: postVote,
 };
 
 export default api;

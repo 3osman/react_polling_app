@@ -11,7 +11,7 @@ const getQuestions = page => (dispatch, getState, { api }) => {
   });
 };
 
-const getQuestion = id => (dispatch, { api }) => {
+const getQuestion = id => (dispatch, getState, { api }) => {
   dispatch(PollingAppActions.getQuestionStart());
   api.question(id)
     .catch(() => dispatch(PollingAppActions.getQuestionFail()))
@@ -20,12 +20,13 @@ const getQuestion = id => (dispatch, { api }) => {
   });
 };
 
-const vote = (id, choice) => (dispatch, { api }) => {
+const vote = (url, callback) => (dispatch, getState, { api }) => {
   dispatch(PollingAppActions.voteStart());
-  api.vote(id, choice)
+  api.vote(url)
     .catch(() => dispatch(PollingAppActions.voteFail()))
     .then(() => {
       dispatch(PollingAppActions.voteSuccess());
+      callback();
   });
 };
 

@@ -1,11 +1,10 @@
 import axios from 'axios';
-
 const ROOT_URL = 'https://polls.apiblueprint.org';
 
 const getQuestions = page => axios({
   url: `${ROOT_URL}/questions`,
   method: 'get',
-  parasms: { page }
+  params: { page }
 });
 
 const getQuestion = id => axios({
@@ -13,9 +12,8 @@ const getQuestion = id => axios({
   method: 'get',
 });
 
-// https://polls.apiblueprint.org/questions/question_id/choices/choice_id
-const postVote = (id, choice) => axios({
-  url: `${ROOT_URL}/questions/${id}/choices/${choice}`,
+const postVote = url => axios({
+  url: `${ROOT_URL}${url}`,
   method: 'post',
 });
 

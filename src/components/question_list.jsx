@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionRow from './question_row';
+import PropTypes from 'prop-types';
 import { PollingAppSelectors } from '../polling_app_selectors';
 import PollingAppAsyncActions from '../polling_app_async_actions';
-import PropTypes from 'prop-types';
 
 class QuestionList extends Component {
   componentDidMount() {
-    this.props.getQuestions();
+    this.props.getQuestions(this.props.page);
   }
   render() {
     const { questions } = this.props;
@@ -16,16 +16,15 @@ class QuestionList extends Component {
         key={key}
         title={questions[key].question}
         publishedAt={questions[key].published_at}
-        choices={questions[key].choices.length}
         url={questions[key].url}
       />
     ));
     return (
-      <div className="App">
-        <div className="App-header ">
-          <h1>Questions</h1>
+      <div className="main-container">
+        <div className="main-header">
+          <h1>Vote Now</h1>
         </div>
-        {this.props.fetchingQuestions && <div className="loading"><span></span></div> }
+        {this.props.fetchingQuestions && <div className="loading"><span> Loading </span></div> }
         <div className="container">
           {questionRows}
         </div>
@@ -37,12 +36,14 @@ class QuestionList extends Component {
 QuestionList.propTypes = {
   fetchingQuestions: PropTypes.bool.isRequired,
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  getQuestions: PropTypes.func.isRequired
+  page: PropTypes.number.isRequired,
+  getQuestions: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   questions: PollingAppSelectors.getQuestions(state),
   fetchingQuestions: PollingAppSelectors.getFetchingQuestions(state),
+  page: PollingAppSelectors.getPage(state),
 });
 
 const mapDispatchToProps = dispatch => ({

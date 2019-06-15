@@ -28,7 +28,8 @@ const initialState = Immutable({
   questions: [],
   question: {},
   fetchingQuestions: false,
-  voteSuccess: false
+  voteSuccess: false,
+  page: 1
 });
 
 export default (state = initialState, action) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-const QuestionRow = ({ title, publishedAt, url }) => {
+const QuestionRow = ({ title, publishedAt, url, choicesLength }) => {
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   return (
     <div className="question-card">
@@ -9,6 +9,9 @@ const QuestionRow = ({ title, publishedAt, url }) => {
           <h2>{title}</h2>
           <h3>
             <span>{new Date(publishedAt).toLocaleDateString("en-US", options)}</span>
+          </h3>
+          <h3>
+            <span>Number of choices: {choicesLength}</span>
           </h3>
         </div>
       </div>

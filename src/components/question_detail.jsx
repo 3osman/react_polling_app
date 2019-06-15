@@ -44,6 +44,7 @@ class QuestionDetail extends Component {
         }}>
           <span>{choices[key].choice} </span>
           <span>{choices[key].votes} Vote</span>
+          <span>{choices[key].percentage}%</span>
         </div>
       );
     }) : null;
@@ -54,7 +55,7 @@ class QuestionDetail extends Component {
           <div className="box question">{question}</div>
           <div className="box choices">
             {choicesList}
-            <button className="save-btn" onClick={this.handleVoteSubmit}>Save vote</button>
+            <button className="save-btn" onClick={this.handleVoteSubmit}>Vote</button>
           </div>
         </div>
       </div>

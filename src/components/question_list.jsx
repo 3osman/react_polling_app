@@ -17,6 +17,7 @@ class QuestionList extends Component {
         title={questions[key].question}
         publishedAt={questions[key].published_at}
         url={questions[key].url}
+        choicesLength={questions[key].choices.length}
       />
     ));
     return (

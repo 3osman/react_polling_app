@@ -19,7 +19,7 @@ $color-lighter-blue: #8ca5cd;
       grid-template-rows: [row] auto;
 
       span:nth-child(2), span:nth-child(3){
-        width: 45%;
+        width: 30%;
       }
     }
     .vote-success{
@@ -27,8 +27,8 @@ $color-lighter-blue: #8ca5cd;
     }
     .choices-list{
       font-size: 16px;
-      span:nth-child(2) {
-        width: 30%;
+      span:nth-child(2), span:nth-child(3){
+        width: 25%;
       }
     }
     .save-btn{
@@ -124,7 +124,6 @@ body {
   height: 70px;
   color: $color-white;
   margin-bottom: 1.2px;
-  transition: border-radius 0.1s ease-in-out 0s, letter-spacing 0.1s ease-in-out 0s;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -133,12 +132,12 @@ body {
   padding: 0 0.5rem;
   align-items: center;
   span {
-    width: 55%;
-    text-align: left;
+    width: 20%;
+    text-align: center;
     padding-left: 5%;
   }
-  span:nth-child(2) {
-    width: 30%;
+  span:nth-child(1) {
+    width: 35%;
   }
   &.active {
     opacity: 0.8;
@@ -170,6 +169,7 @@ body {
   background-color: $color-dark-blue;
   padding: 20px;
   color: $color-white;
+  text-align: center;
 }
 
 .save-btn{
@@ -178,7 +178,7 @@ body {
   width: 200px;
   height: 70px;
   padding: 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .choices {

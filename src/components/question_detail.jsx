@@ -58,7 +58,7 @@ class QuestionDetail extends Component {
             <div className="box question">{question}</div>
             <div className="box choices">
               {choicesList}
-              <button className="save-btn" onClick={this.handleVoteSubmit}>Vote</button>
+              <button className={`save-btn ${!this.state.choice.url ? ' disabled' : ''}`} onClick={this.state.choice.url ? this.handleVoteSubmit : null}>Vote</button>
             </div>
           </div>
         :

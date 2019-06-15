@@ -180,7 +180,10 @@ body {
   padding: 20px;
   font-size: 18px;
 }
-
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .choices {
   grid-column: col / span 4;
   grid-row: row 2;

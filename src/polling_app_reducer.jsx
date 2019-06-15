@@ -27,7 +27,8 @@ export const PollingAppActions = {
 const initialState = Immutable({
   questions: [],
   question: {},
-  fetchingQuestions: false
+  fetchingQuestions: false,
+  voteSuccess: false
 });
 
 export default (state = initialState, action) => {
@@ -40,6 +41,12 @@ export default (state = initialState, action) => {
     }
     case GET_QUESTION_SUCCESS: {
       return state.set('question', action.payload.question);
+    }
+    case VOTE_SUCCESS: {
+      return state.set('voteSuccess', true);
+    }
+    case VOTE_FAIL: {
+      return state.set('voteSuccess', false);
     }
     default:
       return state;

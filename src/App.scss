@@ -2,24 +2,6 @@ $color-white: #ffffff;
 $color-dark-blue: #015697;
 $color-lighter-blue: #8ca5cd;
 
-@keyframes pending {
-  0%  {
-    transform: scaleX(0);
-    transform-origin: 0 0;
-  }
-  50% {
-    transform: scaleX(1);
-    transform-origin: 0 0;
-  }
-  51% {
-    transform-origin: 100% 0;
-  }
-  100% {
-    transform: scaleX(0);
-    transform-origin: 100% 0;
-  }
-}
-
 @media only screen and (max-width: 480px){
   body {
     .container {
@@ -42,6 +24,16 @@ $color-lighter-blue: #8ca5cd;
     }
     .vote-success{
       width: 100%;
+    }
+    .choices-list{
+      font-size: 16px;
+      span:nth-child(2) {
+        width: 30%;
+      }
+    }
+    .save-btn{
+      width: 100%;
+      float: none;
     }
   }
 }
@@ -128,32 +120,26 @@ body {
 
 
 .choices-list{
-  background: $color-white;
+  background: $color-dark-blue;
   height: 70px;
-  color: black;
+  color: $color-white;
   margin-bottom: 1.2px;
   transition: border-radius 0.1s ease-in-out 0s, letter-spacing 0.1s ease-in-out 0s;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  font-size: 22px;
   justify-content: flex-start;
   padding: 0 0.5rem;
   align-items: center;
-  border-radius: 5px;
-  Width: 100%;
-
-  span:nth-child(1){
-    width: 5%;
+  span {
+    width: 55%;
+    text-align: left;
+    padding-left: 5%;
   }
-
   span:nth-child(2) {
-    text-align: center;
-  }
-
-  span:nth-child(2), span:nth-child(3){
     width: 30%;
   }
-
   &.active {
     opacity: 0.8;
   }
@@ -175,8 +161,6 @@ body {
 
 .box {
   color: #fff;
-  border-radius: 5px;
-  padding-right: 16px;
   font-size: 150%;
 }
 
@@ -188,15 +172,18 @@ body {
   color: $color-white;
 }
 
-.saveBtn{
+.save-btn{
   float: right;
-  margin-right: -1rem;
   margin-top: 1rem;
+  width: 200px;
+  height: 70px;
+  padding: 20px;
+  font-size: 16px;
 }
 
 .choices {
-  grid-column: col / span 4 ;
-  grid-row: row 2 ;
+  grid-column: col / span 4;
+  grid-row: row 2;
 }
 
 button {
@@ -240,20 +227,5 @@ button {
   a {
     margin: 5%;
     display: block;
-  }
-}
-
-.loading {
-  position: relative;
-  margin: 0 10%;
-  span {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 3px;
-    background:$color-white;
-    transform-origin: 0 0;
-    transform: scaleX(0);
-    animation: pending 1.5s ease infinite;
   }
 }

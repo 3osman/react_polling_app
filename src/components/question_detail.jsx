@@ -49,12 +49,12 @@ class QuestionDetail extends Component {
     }) : null;
     return (
       <div className="main-container">
-        {this.props.fetchingQuestions && <div className="loading"><span> Loading </span></div>}
+        {this.props.fetchingQuestions && <span> Loading </span>}
         <div className="wrapper">
           <div className="box question">{question}</div>
           <div className="box choices">
             {choicesList}
-            <button className="saveBtn" onClick={this.handleVoteSubmit}>Save vote</button>
+            <button className="save-btn" onClick={this.handleVoteSubmit}>Save vote</button>
           </div>
         </div>
       </div>

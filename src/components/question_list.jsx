@@ -24,7 +24,7 @@ class QuestionList extends Component {
         <div className="main-header">
           <h1>Vote Now</h1>
         </div>
-        {this.props.fetchingQuestions && <div className="loading"><span> Loading </span></div> }
+        {this.props.fetchingQuestions && <span> Loading </span> }
         <div className="container">
           {questionRows}
         </div>

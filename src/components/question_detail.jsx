@@ -51,7 +51,7 @@ class QuestionDetail extends Component {
     }) : null;
     return (
       <div className="main-container">
-        {this.props.fetchingQuestions && <span> Loading </span>}
+        { this.props.fetchingQuestions && <div className="loading"><span></span></div> }
         {
           question ?
           <div className="wrapper">

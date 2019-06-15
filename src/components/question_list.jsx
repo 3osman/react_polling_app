@@ -16,6 +16,7 @@ class QuestionList extends Component {
     }
   }
   render() {
+    console.log(this.props.fetchingQuestions);
     const { questions } = this.props;
     if (!questions) return null;
     let questionRows = Object.keys(questions).map((key, index) =>(
@@ -31,9 +32,9 @@ class QuestionList extends Component {
       <div className="main-container">
         <div className="main-header">
           <h1>Vote Now</h1>
-          <span onClick={this.props.incrementPage}>Next</span>
+          <span className="clickable" onClick={this.props.incrementPage}>Next</span>
         </div>
-        {this.props.fetchingQuestions && <span> Loading </span> }
+        { this.props.fetchingQuestions && <div className="loading"><span></span></div> }
         <div className="container">
           {questionRows}
         </div>

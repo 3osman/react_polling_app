@@ -6,7 +6,7 @@ const getQuestions = page => (dispatch, getState, { api }) => {
   api.questions(page)
     .catch(() => dispatch(PollingAppActions.getQuestionsFail()))
     .then((response) => {
-      dispatch(PollingAppActions.getQuestionsSuccess(response.data));
+      dispatch(PollingAppActions.getQuestionsSuccess(response.data ? response.data : []));
       dispatch(PollingAppActions.questionsLoading(false));
   });
 };

@@ -4,13 +4,20 @@ import QuestionRow from './question_row';
 import PropTypes from 'prop-types';
 import { PollingAppSelectors } from '../polling_app_selectors';
 import PollingAppAsyncActions from '../polling_app_async_actions';
+import { PollingAppActions } from '../polling_app_reducer';
 
 class QuestionList extends Component {
   componentDidMount() {
     this.props.getQuestions(this.props.page);
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.page !== prevProps.page) {
+      this.props.getQuestions(this.props.page);
+    }
+  }
   render() {
     const { questions } = this.props;
+    if (!questions) return null;
     let questionRows = Object.keys(questions).map((key, index) =>(
       <QuestionRow
         key={key}
@@ -24,6 +31,7 @@ class QuestionList extends Component {
       <div className="main-container">
         <div className="main-header">
           <h1>Vote Now</h1>
+          <span onClick={this.props.incrementPage}>Next</span>
         </div>
         {this.props.fetchingQuestions && <span> Loading </span> }
         <div className="container">
@@ -39,6 +47,7 @@ QuestionList.propTypes = {
   questions: PropTypes.arrayOf(PropTypes.object).isRequired,
   page: PropTypes.number.isRequired,
   getQuestions: PropTypes.func.isRequired,
+  incrementPage: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -49,6 +58,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getQuestions: page => dispatch(PollingAppAsyncActions.getQuestions(page)),
+  incrementPage: () => dispatch(PollingAppActions.incrementPage()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionList);

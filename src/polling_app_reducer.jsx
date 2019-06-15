@@ -10,6 +10,7 @@ const GET_QUESTION_FAIL = 'GET_QUESTION_FAIL';
 const VOTE_START = 'VOTE_START';
 const VOTE_SUCCESS = 'VOTE_SUCCESS';
 const VOTE_FAIL = 'VOTE_FAIL';
+const INCREMENT_PAGE = 'INCREMENT_PAGE';
 
 export const PollingAppActions = {
   getQuestionsStart: () => ({ type: GET_QUESTIONS_START, payload: { } }),
@@ -22,6 +23,7 @@ export const PollingAppActions = {
   voteStart: () => ({ type: VOTE_START, payload: { } }),
   voteSuccess: () => ({ type: VOTE_SUCCESS, payload: { } }),
   voteFail: () => ({ type: VOTE_FAIL, payload: { } }),
+  incrementPage: () => ({ type: INCREMENT_PAGE, payload: { } }),
 };
 
 const initialState = Immutable({
@@ -45,7 +47,7 @@ export default (state = initialState, action) => {
     }
     case GET_QUESTION_SUCCESS: {
       const sum = action.payload.question.choices.reduce((a, b) => a + (b.votes || 0), 0);
-      action.payload.question.choices = action.payload.question.choices.map(obj=> ({ ...obj, percentage: sum === 0 ? 0 : ((obj.votes*100)/sum).toFixed(2) }));
+      action.payload.question.choices = action.payload.question.choices.map(obj=> ({ ...obj, percentage: sum === 0 ? 0 : ((obj.votes * 100) / sum).toFixed(2) }));
       return state.set('question', action.payload.question);
     }
     case VOTE_SUCCESS: {
@@ -53,6 +55,9 @@ export default (state = initialState, action) => {
     }
     case VOTE_FAIL: {
       return state.set('voteSuccess', false);
+    }
+    case INCREMENT_PAGE: {
+      return state.set('page', state.page + 1);
     }
     default:
       return state;

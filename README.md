@@ -1,6 +1,3 @@
-
-> BCG code challenge for SPA for Polling API
-
 **react_polling_app** is a single page application using React that consumes Polls API.
 
 ## Heroku App

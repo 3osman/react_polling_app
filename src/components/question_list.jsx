@@ -16,7 +16,6 @@ class QuestionList extends Component {
     }
   }
   render() {
-    console.log(this.props.fetchingQuestions);
     const { questions } = this.props;
     if (!questions) return null;
     let questionRows = Object.keys(questions).map((key, index) =>(
